@@ -36,6 +36,11 @@ func GetRequestTimeFromContext(ctx context.Context) time.Time {
 	return s
 }
 
+func SetErrorMessage(ctx context.Context, errMessage string) context.Context {
+	ctx = context.WithValue(ctx, ErrorMessage, errMessage)
+	return ctx
+}
+
 func GetErrorMessageFromContext(ctx context.Context) string {
 	s, ok := ctx.Value(ErrorMessage).(string)
 	if !ok {
