@@ -7,7 +7,10 @@ require (
 	github.com/gogo/protobuf v1.3.2
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/segmentio/encoding v0.3.6
+	github.com/spf13/cast v1.6.0
 	go.uber.org/zap v1.26.0
+	golang.org/x/exp v0.0.0-20231214170342-aacd6d4b4611
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	gopkg.in/resty.v1 v1.12.0
 )
 
