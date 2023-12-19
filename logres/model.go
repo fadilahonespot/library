@@ -1,4 +1,4 @@
-package logger
+package logres
 
 type Context struct {
 	ServiceName    string      `json:"app_name"`
