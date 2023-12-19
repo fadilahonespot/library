@@ -24,11 +24,6 @@ type LogTdrModel struct {
 	Error    string      `json:"error"`
 }
 
-type Field struct {
-	Key string
-	Val interface{}
-}
-
 type LogresConfig struct {
 	MaxSize    int    // Ukuran maksimum file dalam megabyte sebelum rotasi
 	MaxBackups int    // Jumlah file backup yang akan disimpan

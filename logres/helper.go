@@ -7,7 +7,7 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
-func ToField(key string, val interface{}) (field slog.Attr) {
+func toField(key string, val interface{}) (field slog.Attr) {
 	field = slog.Any(key, val)
 	return
 }
@@ -27,7 +27,7 @@ func getLoggerConfig(config LogresConfig) *lumberjack.Logger {
 func formatMessage(msg ...interface{}) []slog.Attr {
 	var logField []slog.Attr
 	for index, message := range msg {
-		logField = append(logField, ToField(fmt.Sprintf("message_%v", index), message))
+		logField = append(logField, toField(fmt.Sprintf("message_%v", index), message))
 	}
 
 	return logField
