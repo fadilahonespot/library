@@ -27,24 +27,25 @@ type defaultLogger struct {
 func SetLogger(config LogresConfig) Logres {
 	fmt.Println("Start Logger.....")
 
-	_, err := os.Stat(config.FolderPath)
-	if os.IsNotExist(err) {
-		err := os.MkdirAll(config.FolderPath, os.ModePerm)
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	loggerSys := getLoggerConfig(config)
-	loggerSys.Filename = config.FolderPath + "/sys.log"
-
-	loggerTdr := getLoggerConfig(config)
-	loggerTdr.Filename = config.FolderPath + "/tdr.log"
-
 	var loggingLevel = new(slog.LevelVar)
 	jsonHandlerSys := slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: loggingLevel})
 	jsonHandlerTdr := slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: loggingLevel})
+
 	if config.LogsWrite {
+		_, err := os.Stat(config.FolderPath)
+		if os.IsNotExist(err) {
+			err := os.MkdirAll(config.FolderPath, os.ModePerm)
+			if err != nil {
+				panic(err)
+			}
+		}
+
+		loggerSys := getLoggerConfig(config)
+		loggerSys.Filename = config.FolderPath + "/sys.log"
+
+		loggerTdr := getLoggerConfig(config)
+		loggerTdr.Filename = config.FolderPath + "/tdr.log"
+
 		jsonHandlerSys = slog.NewJSONHandler(loggerSys, &slog.HandlerOptions{Level: loggingLevel})
 		jsonHandlerTdr = slog.NewJSONHandler(loggerTdr, &slog.HandlerOptions{Level: loggingLevel})
 	}
