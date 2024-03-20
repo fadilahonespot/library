@@ -1,6 +1,7 @@
 package response
 
 import (
+	"encoding/json"
 	"math"
 	"net/http"
 )
@@ -52,6 +53,12 @@ func HandleSuccessWithPagination(totalItems float64, limit, page int, data inter
 	if limit != 0 && page != 0 {
 		res := totalItems / float64(limit)
 		totalPage = math.Ceil(res)
+	}
+
+	var values = []string{}
+	tx, _ := json.Marshal(data)
+	if string(tx) == "null" {
+		data = values
 	}
 
 	resp := responsePagination{
